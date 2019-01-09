@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - name: example-auth
-        image: {{DOCKER_REGISTRY}}/ambassador-auth-service:{{VERSION}}
+        image: {{DOCKER_REGISTRY}}/sample-auth-service:{{VERSION}}
         imagePullPolicy: Always
         ports:
         - name: http-api

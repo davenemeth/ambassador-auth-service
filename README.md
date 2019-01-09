@@ -1,5 +1,7 @@
 # Ambassador Auth Service
 
+Forked from Datawire
+
 Example auth service for [Ambassador][ag] using [ExtAuth][ae]. See the [Ambassador documentation][aw] for more information.
 
 [ag]: https://github.com/datawire/ambassador

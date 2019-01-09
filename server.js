@@ -1,26 +1,7 @@
 /*
- * Copyright 2017 Datawire. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
-/*
- * Example auth service for Ambassador[1] using ExtAuth[2].
- * See the Ambassador documentation[3] for more information.
- * [1]: https://github.com/datawire/ambassador
- * [2]: https://github.com/datawire/ambassador-envoy
- * [3]: http://www.getambassador.io/
-*/
+This is a sample implementation to test ambassador external auth capabilities. 
+DO NOT USE THIS SERVICE IN A PRODUCTIVE ENVIRONMENT!
+*/ 
 
 const express = require('express')
 const app = express()
@@ -40,28 +21,38 @@ app.use(addRequestId)
 // Add verbose logging of requests (see below)
 app.use(logRequests)
 
-// Require authentication for /extauth/qotm/quote requests
-app.all('/extauth/qotm/quote*', authenticate, function (req, res) {
-  var session = req.headers['x-qotm-session']
+// Require authentication for /httpbin requests
+app.all('/httpbin/*', authenticate, function (req, res) {
+  var session = req.headers['x-leoni-session']
 
   if (!session) {
-    console.log(`creating x-qotm-session: ${req.id}`)
+    console.log(`Creating x-leoni-session: ${req.id}`)
     session = req.id
-    res.set('x-qotm-session', session)
+    res.set('x-leoni-session', session)
+  }
+
+  console.log(`Allowing request, session ${session}`)
+  res.send('OK (authenticated)')
+})
+
+/*
+// Require authentication for all requests
+app.all('*', authenticate, function (req, res) {
+  var session = req.headers['x-leoni-session']
+
+  if (!session) {
+    console.log(`creating x-leoni-session: ${req.id}`)
+    session = req.id
+    res.set('x-leoni-session', session)
   }
 
   console.log(`allowing QotM request, session ${session}`)
   res.send('OK (authenticated)')
 })
-
-// Everything else is okay without auth
-app.all('*', function (req, res) {
-  console.log(`Allowing request to ${req.path}`)
-  res.send('OK (not /qotm/quote)')
-})
+*/
 
 app.listen(3000, function () {
-  console.log('Subrequest auth server sample listening on port 3000')
+  console.log('Ambassador auth server listening on port 3000')
 })
 
 // Middleware to log requests, including basic auth header info
