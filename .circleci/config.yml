@@ -36,8 +36,8 @@ jobs:
       # run tests!
       - run: yarn test
 
-      - run: docker build -t $(DOCKER_REGISTRY)/sample-auth-service:$(VERSION) .
+      - run: docker build -t $DOCKER_REGISTRY/sample-auth-service:$VERSION .
 
-      - run: docker push $(DOCKER_REGISTRY)/sample-auth-service:$(VERSION)
+      - run: docker push $DOCKER_REGISTRY/sample-auth-service:$VERSION
 
 
