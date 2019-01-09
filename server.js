@@ -1,7 +1,7 @@
 /*
-This is a sample implementation to test ambassador external auth capabilities. 
+This is a sample implementation to test ambassador external auth capabilities.
 DO NOT USE THIS SERVICE IN A PRODUCTIVE ENVIRONMENT!
-*/ 
+*/
 
 const express = require('express')
 const app = express()
