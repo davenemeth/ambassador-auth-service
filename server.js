@@ -35,11 +35,13 @@ app.all('/httpbin/*', authenticate, function (req, res) {
   res.send('OK (authenticated)')
 })
 
+/*
 // allow kubernetes ready check
 app.all('/ready', function (req, res) {
   console.log('Allowing Kubernetes ready check')
   res.send('OK (kubernetes ready check)')
 })
+*/
 
 /*
 // Require authentication for all requests
@@ -56,6 +58,12 @@ app.all('*', authenticate, function (req, res) {
   res.send('OK (authenticated)')
 })
 */
+
+// Everything else is okay without auth
+app.all('*', function (req, res) {
+  console.log(`Allowing request to ${req.path}`)
+  res.send('OK (not restricted route)')
+})
 
 app.listen(3000, function () {
   console.log('Ambassador auth server listening on port 3000. v1.0.1')
