@@ -10,8 +10,8 @@ VERSION=$(shell python -c 'import json; print(json.load(open("package.json", "r"
 all: warning docker-image example-auth.yaml
 
 docker-image: check-registry
-	docker build -t $(DOCKER_REGISTRY)/sample-auth-service:$(VERSION) .
-	docker push $(DOCKER_REGISTRY)/sample-auth-service:$(VERSION)
+	docker build -t $(DOCKER_REGISTRY)/ambassador-extauth-sample:$(VERSION) .
+	docker push $(DOCKER_REGISTRY)/ambassador-extauth-sample:$(VERSION)
 
 check-registry:
 	@if [ -z "$(DOCKER_REGISTRY)" ]; then \
