@@ -65,6 +65,7 @@ app.listen(3000, function () {
 function logRequests (req, res, next) {
   // do not log ready checks
   if (`${req.path}` == "/ready") {
+    console.log('\nReceived Kubernetes ready check -> ok')
     return
   }
 
