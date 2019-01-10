@@ -61,7 +61,7 @@ app.all('*', authenticate, function (req, res) {
 
 // Everything else is okay without auth
 app.all('*', function (req, res) {
-  console.log(`Allowing request to ${req.path}`)
+  console.log(`Allowing request to not restricted route: ${req.path}`)
   res.send('OK (not restricted route)')
 })
 
@@ -73,7 +73,6 @@ app.listen(3000, function () {
 function logRequests (req, res, next) {
   // do not log ready checks
   if (`${req.path}` == "/ready") {
-    console.log('\nReceived Kubernetes ready check -> ok')
     return next()
   }
 
