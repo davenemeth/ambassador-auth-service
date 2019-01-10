@@ -39,8 +39,7 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
 
-      - run: docker build -t $DOCKER_REGISTRY/sample-auth-service:$VERSION .
+      - run: docker build -t $DOCKER_REGISTRY:$VERSION .
 
-      - run: docker push $DOCKER_REGISTRY/sample-auth-service:$VERSION
-
+      - run: docker push $DOCKER_REGISTRY:$VERSION
 

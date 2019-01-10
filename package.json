@@ -1,9 +1,9 @@
 {
   "name": "authserver",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Auth Server for Envoy ExtAuth",
   "author": "davenemeth",
-  "license": "",
+  "license": "MIT",
   "main": "server.js",
   "scripts": {
     "test": "standard"
