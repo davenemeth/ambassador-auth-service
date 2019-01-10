@@ -35,6 +35,12 @@ app.all('/httpbin/*', authenticate, function (req, res) {
   res.send('OK (authenticated)')
 })
 
+// allow kubernetes ready check
+app.all('/ready', function (req, res) {
+  console.log('Allowing Kubernetes ready check')
+  res.send('OK (kubernetes ready check)')
+})
+
 /*
 // Require authentication for all requests
 app.all('*', authenticate, function (req, res) {
