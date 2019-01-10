@@ -74,7 +74,7 @@ function logRequests (req, res, next) {
   // do not log ready checks
   if (`${req.path}` == "/ready") {
     console.log('\nReceived Kubernetes ready check -> ok')
-    return
+    return next()
   }
 
   console.log('\nNew request')
