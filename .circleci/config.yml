@@ -39,6 +39,8 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
 
+      - run: docker login --username $REGISTRY_USERNAME --password $REGISTRY_PASSWORD
+
       - run: docker build -t $DOCKER_REGISTRY:$VERSION .
 
       - run: docker push $DOCKER_REGISTRY:$VERSION
