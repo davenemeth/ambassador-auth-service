@@ -66,7 +66,7 @@ app.all('*', function (req, res) {
 })
 
 app.listen(3000, function () {
-  console.log('Ambassador auth server listening on port 3000. v1.0.1')
+  console.log('Ambassador auth server listening on port 3000. v1.0.2')
 })
 
 // Middleware to log requests, including basic auth header info
