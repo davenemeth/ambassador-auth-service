@@ -63,6 +63,11 @@ app.listen(3000, function () {
 
 // Middleware to log requests, including basic auth header info
 function logRequests (req, res, next) {
+  // do not log ready checks
+  if ( "/ready" == `${req.path}` ) {
+    return
+  }
+
   console.log('\nNew request')
   console.log(`  Path: ${req.path}`)
   console.log(`  Incoming headers >>>`)
