@@ -61,8 +61,13 @@ app.all('*', authenticate, function (req, res) {
 
 // Everything else is okay without auth
 app.all('*', function (req, res) {
-  console.log(`Allowing request to not restricted route: ${req.path}`)
-  res.send('OK (not restricted route)')
+  if (`${req.path}` == "/ready") {
+    res.send('OK (ready check is always allowed)')
+  }
+  else {
+    console.log(`Allowing request to not restricted route: ${req.path}`)
+    res.send('OK (not restricted route)')
+  }
 })
 
 app.listen(3000, function () {
