@@ -58,13 +58,13 @@ app.all('*', authenticate, function (req, res) {
 */
 
 app.listen(3000, function () {
-  console.log('Ambassador auth server listening on port 3000')
+  console.log('Ambassador auth server listening on port 3000. v1.0.1')
 })
 
 // Middleware to log requests, including basic auth header info
 function logRequests (req, res, next) {
   // do not log ready checks
-  if ( "/ready" == `${req.path}` ) {
+  if (`${req.path}` == "/ready") {
     return
   }
 
